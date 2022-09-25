@@ -115,7 +115,7 @@ namespace MyResource.ScriptedPhysics
                         float finalForce = (float)Math.Round(RWDBias * Game.GetControlNormal(0, Control.VehicleMoveDown), 3);
 
                         if (finalForce >  API.GetConvarInt("cw_power_max", 100) / 100) finalForce = (float)API.GetConvarInt("cw_power_max", 100) / 100;
-                        Util.DisplayHelpTextTimed("Force:" +finalForce.ToString(), 0);
+                        //Util.DisplayHelpTextTimed("Force:" +finalForce.ToString(), 0);
 
                         
                         //Decay when off angle

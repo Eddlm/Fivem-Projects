@@ -4,21 +4,29 @@ Scripts Physics. Yeah.
 
 #### Inverse Torque
 Negates vanilla the power drop off when sliding.
+
 Server-wide. 
 
 #### Custom Wheelies
 Disables vanilla wheelies and implements a custom wheelie system. Can just disable wheelies too.
+
 Server-wide. 
 #### ESC
 Reduces Inverse Torque's power if needed.
+
 Server decides if clients can use the /esc command.
+
 Works client-wide, not per car.
 
 #### LCS
 Modulates torque on launch to avoid wheelspin. In the future it will modulate actual throttle input.
+
 Server decides if clients can use the /lcs command.
+
 Works client-wide, not per car.
 
+
+# Server.cfg convars
 ```
 ### Scripted Physics ###
 # Inverse Torque

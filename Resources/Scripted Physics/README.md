@@ -2,7 +2,8 @@ Scripts Physics. Yeah.
 
 # Feature List
 
-#### Inverse Torque - Negates vanilla the power drop off when sliding.
+#### Inverse Torque - Counteracts vanilla the power drop off when sliding.
+- Can over-compensate for more power while sliding.
 - Server-wide. 
 
 #### Custom Wheelies - Disables vanilla wheelies and implements a custom wheelie system. Can just disable wheelies too.

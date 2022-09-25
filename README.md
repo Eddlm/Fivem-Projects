@@ -7,7 +7,7 @@ Folders:
 Resource Plans:
 - **Gamemodes**: Racing system, Cops 'n' Crooks, Car Football
 - **Server Systems**: Soft Colissions, Speed Traps, Map-wide player blips
-- **Client systems**: Scripted Physics, Scripted Feedback (camerawork), Nitrous (shots & gradual), Glowing Brakes, Custom Performance (Handling edits as Tuning), Advanced Engine Sound Swapper, V-Stancer re-purposed, Manual Tranmission
+- **Client systems**: General Script Settings UI, Scripted Physics, Scripted Feedback (camerawork), Nitrous (shots & gradual), Glowing Brakes, Custom Performance (Handling edits as Tuning), Advanced Engine Sound Swapper, V-Stancer re-purposed, Manual Tranmission
 
 
 ## Develpment cycles

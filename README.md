@@ -1,12 +1,14 @@
 Here you got the full sourcecode of the projects I do for FiveM. One folder per project. C#. Feel free to learn from them and take bits for your own purposes.
 
-Plans:
+Folders:
+- Resources: FiveM ready resources with their docs.
+- Sources: C# Project files. 
+
+Resource Plans:
 - **Gamemodes**: Racing system, Cops 'n' Crooks, Car Football
 - **Server Systems**: Soft Colissions, Speed Traps, Map-wide player blips
 - **Client systems**: Scripted Physics, Scripted Feedback (camerawork), Nitrous (shots & gradual), Glowing Brakes, Custom Performance (Handling edits as Tuning), Advanced Engine Sound Swapper, V-Stancer re-purposed, Manual Tranmission
 
-## Resources & your server
-Each folder contains the source, resource, and documentation for each project. As a server owner, do credit me somewhere, mostly so people can look me up and find more stuff they may like.
 
 ## Develpment cycles
 I aim to have a stable update each month, for one project of the listed. Whichever I need.

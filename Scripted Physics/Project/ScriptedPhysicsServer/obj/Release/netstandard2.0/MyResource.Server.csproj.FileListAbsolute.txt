@@ -1,0 +1,10 @@
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\MyResource.Server.deps.json
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\MyResource.Server.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\MyResource.Server.net.pdb
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.csproj.AssemblyReference.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.AssemblyInfoInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.AssemblyInfo.cs
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.csproj.CoreCompileInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\obj\Release\netstandard2.0\MyResource.Server.net.pdb

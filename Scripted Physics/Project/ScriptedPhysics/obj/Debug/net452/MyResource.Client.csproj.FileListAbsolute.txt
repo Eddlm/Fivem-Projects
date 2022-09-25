@@ -1,0 +1,9 @@
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\bin\Debug\net452\MyResource.Client.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\bin\Debug\net452\CitizenFX.Core.Client.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.csproj.AssemblyReference.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.AssemblyInfoInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.AssemblyInfo.cs
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.csproj.CoreCompileInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.csproj.CopyComplete
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\obj\Debug\net452\MyResource.Client.net.dll

@@ -1,0 +1,2 @@
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\bin\Release\net452\publish\MyResource.Client.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Client\bin\Release\net452\publish\CitizenFX.Core.Client.dll

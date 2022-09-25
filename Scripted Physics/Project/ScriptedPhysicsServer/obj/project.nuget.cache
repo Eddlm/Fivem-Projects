@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "epd47OddFZ30+UbBSyLOeffAmELnFoJ0JG5tE1OlrOKdu1H1ISs9uSjfz7PUtDsLpTqmIlafISeN0nE6kEI7Tw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Juanjo\\.nuget\\packages\\citizenfx.core.server\\1.0.5901\\citizenfx.core.server.1.0.5901.nupkg.sha512",
+    "C:\\Users\\Juanjo\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Juanjo\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Juanjo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

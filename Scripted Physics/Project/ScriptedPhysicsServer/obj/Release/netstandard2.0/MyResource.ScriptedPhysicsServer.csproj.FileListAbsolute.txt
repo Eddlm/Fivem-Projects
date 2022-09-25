@@ -1,0 +1,10 @@
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\bin\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.deps.json
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\bin\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\bin\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.net.pdb
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.csproj.AssemblyReference.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.AssemblyInfoInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.AssemblyInfo.cs
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.csproj.CoreCompileInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysicsServer\obj\Release\netstandard2.0\MyResource.ScriptedPhysicsServer.net.pdb

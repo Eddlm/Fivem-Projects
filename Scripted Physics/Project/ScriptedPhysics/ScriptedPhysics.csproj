@@ -1,0 +1,17 @@
+﻿<Project Sdk="CitizenFX.Sdk.Client/0.2.3">
+    <PropertyGroup>
+      <AssemblyName>ScriptedPhysics</AssemblyName>
+      <VersionPrefix>0.0.1</VersionPrefix>
+      <Version>$(VersionPrefix)</Version>
+    </PropertyGroup>
+    <ItemGroup>
+      <Compile Include="../SharedCS/Client/*.cs" />
+
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="COPY &quot;$(TargetDir)$(TargetFileName)&quot; &quot;D:\Servidores\FiveM\txData\CFXDefault_FA359F.base\resources\[eddlm]\scripted-physics\client" />
+    </Target>
+</Project>

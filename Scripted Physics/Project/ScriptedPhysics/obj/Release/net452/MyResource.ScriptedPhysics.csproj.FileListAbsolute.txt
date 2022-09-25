@@ -1,0 +1,10 @@
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\bin\Release\net452\MyResource.ScriptedPhysics.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\bin\Release\net452\CitizenFX.Core.Client.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\bin\Release\net452\Newtonsoft.Json.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.csproj.AssemblyReference.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.AssemblyInfoInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.AssemblyInfo.cs
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.csproj.CoreCompileInputs.cache
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.csproj.CopyComplete
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\ScriptedPhysics\obj\Release\net452\MyResource.ScriptedPhysics.net.dll

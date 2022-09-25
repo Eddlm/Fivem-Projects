@@ -1,0 +1,4 @@
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\publish\MyResource.Server.net.dll
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\publish\MyResource.Server.deps.json
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\publish\MyResource.Server.net.pdb
+C:\Users\Juanjo\source\repos\ProperServer\MyResource\Server\bin\Release\netstandard2.0\publish\CitizenFX.Core.Server.dll

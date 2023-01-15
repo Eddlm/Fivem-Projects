@@ -1,0 +1,10 @@
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\bin\Debug\netstandard2.0\ScriptedPhysicsServer.deps.json
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\bin\Debug\netstandard2.0\ScriptedPhysicsServer.net.dll
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\bin\Debug\netstandard2.0\ScriptedPhysicsServer.net.pdb
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.csproj.AssemblyReference.cache
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.AssemblyInfoInputs.cache
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.AssemblyInfo.cs
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.csproj.CoreCompileInputs.cache
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.net.dll
+D:\Mis Archivos\Repos\Source\ProperServer\MyResource\ScriptedPhysicsServer\obj\Debug\netstandard2.0\ScriptedPhysicsServer.net.pdb

@@ -2,13 +2,17 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "CitizenFX.Core.Server/1.0.5901": {
+      "CitizenFX.Core.Server/1.0.6209": {
         "type": "package",
         "compile": {
-          "lib/netstandard20/CitizenFX.Core.Server.dll": {}
+          "lib/netstandard20/CitizenFX.Core.Server.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard20/CitizenFX.Core.Server.dll": {}
+          "lib/netstandard20/CitizenFX.Core.Server.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -38,23 +42,27 @@
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       }
     }
   },
   "libraries": {
-    "CitizenFX.Core.Server/1.0.5901": {
-      "sha512": "ioQNIwTtB/2OhRQmyW0O7ATnIB7wgJSas91Z69+96I10jW6eImnl5L8LxJd18sFUzG6Qmo+HCHnb9EL7PCFOyA==",
+    "CitizenFX.Core.Server/1.0.6209": {
+      "sha512": "fHipeO5SQfUJtKgBYdkMqgGznaJ0S3K97kDSGCcFGI2x1z5NY+AuD+MiHkEOU5mB7S44qEvKSYd6L9xYvq9P3A==",
       "type": "package",
-      "path": "citizenfx.core.server/1.0.5901",
+      "path": "citizenfx.core.server/1.0.6209",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "citizenfx.core.server.1.0.5901.nupkg.sha512",
+        "citizenfx.core.server.1.0.6209.nupkg.sha512",
         "citizenfx.core.server.nuspec",
         "lib/net45/CitizenFX.Core.Server.dll",
         "lib/net45/CitizenFX.Core.Server.xml",
@@ -242,19 +250,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Juanjo\\.nuget\\packages\\": {}
+    "C:\\Users\\Eddlm\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
+      "projectUniqueName": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
       "projectName": "ScriptedPhysicsServer",
-      "projectPath": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
-      "packagesPath": "C:\\Users\\Juanjo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\obj\\",
+      "projectPath": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
+      "packagesPath": "C:\\Users\\Eddlm\\.nuget\\packages\\",
+      "outputPath": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Juanjo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Eddlm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -301,11 +309,12 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

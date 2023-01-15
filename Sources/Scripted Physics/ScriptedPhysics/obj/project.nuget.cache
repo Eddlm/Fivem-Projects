@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "gCuHNsDF1JazAHlh4HX9J7YmQW1YSIzh3yCNdFBO4z/GZOqTZBmPMMNDp9S6laW8lDz0LtC+pAKe/Y1AIbko1g==",
+  "dgSpecHash": "jLKaKi9+OnS9j0R8euc0uwdyUoDSnTsEwf4aS3LPvI3+Qc5X5jAwTwManFsCnsEt2wgvby/OGshbxWrCAyk4RA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysics\\ScriptedPhysics.csproj",
+  "projectFilePath": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysics\\ScriptedPhysics.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Juanjo\\.nuget\\packages\\citizenfx.core.client\\1.0.5901\\citizenfx.core.client.1.0.5901.nupkg.sha512",
-    "C:\\Users\\Juanjo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\Juanjo\\.nuget\\packages\\citizenfx.framework.client\\0.2.3\\citizenfx.framework.client.0.2.3.nupkg.sha512"
+    "C:\\Users\\Eddlm\\.nuget\\packages\\citizenfx.core.client\\1.0.6209\\citizenfx.core.client.1.0.6209.nupkg.sha512",
+    "C:\\Users\\Eddlm\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Eddlm\\.nuget\\packages\\citizenfx.framework.client\\0.2.3\\citizenfx.framework.client.0.2.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj": {}
+    "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj": {
+    "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
+        "projectUniqueName": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
         "projectName": "ScriptedPhysicsServer",
-        "projectPath": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
-        "packagesPath": "C:\\Users\\Juanjo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Juanjo\\source\\repos\\ProperServer\\MyResource\\ScriptedPhysicsServer\\obj\\",
+        "projectPath": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\ScriptedPhysicsServer.csproj",
+        "packagesPath": "C:\\Users\\Eddlm\\.nuget\\packages\\",
+        "outputPath": "D:\\Mis Archivos\\Repos\\Source\\ProperServer\\MyResource\\ScriptedPhysicsServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Juanjo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Eddlm\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,11 +61,12 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -130,9 +130,10 @@ namespace MyResource.ScriptedPhysics
                         finalForce *= spdVectorPenalty;
 
 
-                        finalForce *= Game.LastFrameTime;
+                        finalForce *= 0.01f; //Dont use Game.LastFrametime
                         API.ApplyForceToEntity(vehicle.Handle, 3, 0.0f, 0.0f, finalForce, 0f, 4f, 0.0f, 0, true, true, true, false, false);
 
+                        
                         //Twist           
                         //API.ApplyForceToEntity(vehicle.Handle, 3, torque, 0.0f, 0.0f, 0f, 0f, 2f, 0, true, true, true, false, false);
                         //API.ApplyForceToEntity(vehicle.Handle, 3, -torque, 0.0f, 0.0f, 0f, 0f, -2f, 0, true, true, true, false, false);

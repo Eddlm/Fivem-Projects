@@ -12,6 +12,6 @@
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="COPY &quot;$(TargetDir)$(TargetFileName)&quot; &quot;D:\Servidores\FiveM\txData\CFXDefault_FA359F.base\resources\[eddlm]\scripted-physics\client" />
+      <Exec Command="COPY &quot;$(TargetDir)$(TargetFileName)&quot; &quot;I:\NonSteamGames\FiveM\txData\CFXDefault_FA359F.base\resources\[eddlm]\scripted-physics\client&quot;" />
     </Target>
 </Project>

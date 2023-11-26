@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.5.2": {
-      "CitizenFX.Core.Client/1.0.6209": {
+      "CitizenFX.Core.Client/1.0.7130": {
         "type": "package",
         "compile": {
           "lib/net45/CitizenFX.Core.Client.dll": {
@@ -31,14 +31,14 @@
     }
   },
   "libraries": {
-    "CitizenFX.Core.Client/1.0.6209": {
-      "sha512": "wzBfXWUoBT4lNEtzfC9ch91/PAVXaDxCbFWTjdFpSk4eb+u1eS2NdL3L0wCm+moY/aK38YZe50kygwf9C1egQQ==",
+    "CitizenFX.Core.Client/1.0.7130": {
+      "sha512": "5FgEXjv9xpBYl+ZeI5InAanriLOQdLqG7mmLSxDutD0kiEi+nHufCsK0lfJjzDmH5griXduX7ID1eAKkOx5GKg==",
       "type": "package",
-      "path": "citizenfx.core.client/1.0.6209",
+      "path": "citizenfx.core.client/1.0.7130",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "citizenfx.core.client.1.0.6209.nupkg.sha512",
+        "citizenfx.core.client.1.0.7130.nupkg.sha512",
         "citizenfx.core.client.nuspec",
         "lib/net45/CitizenFX.Core.Client.dll",
         "lib/net45/CitizenFX.Core.Client.xml"
@@ -137,7 +137,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "ScriptedPhysicsServer/1.0.0": {
         "dependencies": {
-          "CitizenFX.Core.Server": "1.0.6209",
+          "CitizenFX.Core.Server": "1.0.7257",
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.1"
         },
@@ -17,7 +17,7 @@
           "ScriptedPhysicsServer.dll": {}
         }
       },
-      "CitizenFX.Core.Server/1.0.6209": {
+      "CitizenFX.Core.Server/1.0.7257": {
         "runtime": {
           "lib/netstandard20/CitizenFX.Core.Server.dll": {
             "assemblyVersion": "0.0.0.0",
@@ -47,12 +47,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "CitizenFX.Core.Server/1.0.6209": {
+    "CitizenFX.Core.Server/1.0.7257": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fHipeO5SQfUJtKgBYdkMqgGznaJ0S3K97kDSGCcFGI2x1z5NY+AuD+MiHkEOU5mB7S44qEvKSYd6L9xYvq9P3A==",
-      "path": "citizenfx.core.server/1.0.6209",
-      "hashPath": "citizenfx.core.server.1.0.6209.nupkg.sha512"
+      "sha512": "sha512-084734VMaHpemOB00pAEsQf6SnL6jseFv/uG2bPBwJt4L/sLQFZ5JzQffeCjJOBa60Xxighz79nBx3A3A9a7JA==",
+      "path": "citizenfx.core.server/1.0.7257",
+      "hashPath": "citizenfx.core.server.1.0.7257.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",

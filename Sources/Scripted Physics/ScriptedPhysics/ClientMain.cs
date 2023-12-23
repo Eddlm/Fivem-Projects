@@ -13,6 +13,11 @@ namespace MyResource.ScriptedPhysics
     {
 
 
+        public string sp_nitro_enabled = "sp_nitro_enabled";
+        public string sp_nitro_duration = "sp_nitro_duration";
+        public string sp_nitro_cooldown = "sp_nitro_cooldown";
+
+
         public ClientMain()
         {
 
@@ -23,7 +28,7 @@ namespace MyResource.ScriptedPhysics
         [Tick]
         public Task OnTick()
         {
-            
+            if(Game.Player.Character.CurrentVehicle!=null) ProcessNitroShots(Game.Player.Character.CurrentVehicle);
             return Task.FromResult(0);
         }
 
@@ -33,8 +38,10 @@ namespace MyResource.ScriptedPhysics
 
         private void ProcessNitroShots(Vehicle v)
         {
-            int NitroDurationSeconds = ((int)API.GetConvarInt("sp_nitro_duration", 4));
-            int NitroCooldownSeconds = ((int)API.GetConvarInt("sp_nitro_cooldown", 4));
+            if (((int)API.GetConvarInt(sp_nitro_enabled, 0)) != 1) return;
+
+            int NitroDurationSeconds = ((int)API.GetConvarInt(sp_nitro_duration, 4));
+            int NitroCooldownSeconds = ((int)API.GetConvarInt(sp_nitro_cooldown, 4));
 
             //Rocket boost screws with nitro
             if (new string[] { "SCRAMJET", "TOREADOR", "VOLTIC2" }.Contains(v.DisplayName)) return;
@@ -86,7 +93,7 @@ namespace MyResource.ScriptedPhysics
 
             if (NitroActive)
             {
-                Game.SetControlNormal(2, Control.VehicleAccelerate, 255);
+                //Game.SetControlNormal(2, Control.VehicleAccelerate, 255);
                 //if (UseForce && v.IsOnAllWheels) API.ApplyForceToEntity(v.Handle, 3, 0.0f, 2 * Game.LastFrameTime, 0f, 0f, 0.5f, 0.0f, 0, true, true, true, false, false);
             }
         }

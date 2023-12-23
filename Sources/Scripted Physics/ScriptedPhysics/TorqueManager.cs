@@ -13,9 +13,22 @@ namespace MyResource.ScriptedPhysics
         private Vehicle pVehicle;
         private Dictionary<string, int> boneToIndex = new Dictionary<string, int>();
         private VehicleClass[] InnapropiateToManage = { VehicleClass.Boats, VehicleClass.Helicopters, VehicleClass.Planes, VehicleClass.Cycles, VehicleClass.Motorcycles };
-        
+
         private float PowerslideAggression = 1;
 
+        public string powerslides_on = "powerslides_on";
+        public string powerslides_allow_client_toggle = "powerslides_allow_client_toggle";
+        public string powerslides_trlat_start = "powerslides_trlat_start";
+        public string powerslides_scale = "powerslides_scale";
+        public string powerslides_max_mult = "powerslides_max_mult";
+
+        public string sp_enable_offroad_boost = "sp_enable_offroad_boost";
+        public string powerslides_tc_on = "powerslides_tc_on";
+
+        public string sp_overspeed_penalty = "sp_overspeed_penalty";
+        public string sp_reduce_suspension_boosts = "sp_reduce_susopension_boosts";
+        public string sp_custom_turbo_power = "sp_custom_turbo_power";
+        
         public TorqueManager()
         {
             boneToIndex.Add("wheel_lf", 0);
@@ -25,7 +38,6 @@ namespace MyResource.ScriptedPhysics
 
             AddCommands();
             EventHandlers["gameEventTriggered"] += new Action<string, List<dynamic>>(OnGameEventTriggered);
-
         }
 
         private void OnGameEventTriggered(string name, List<dynamic> args)
@@ -37,7 +49,7 @@ namespace MyResource.ScriptedPhysics
 
         private void AddCommands()
         {
-            if (GetConvarInt("powerslides_allow_client_toggle", 1) == 1)
+            if (GetConvarInt(powerslides_allow_client_toggle, 1) == 1)
             {
                 TriggerEvent("chat:addSuggestion", "/powerslides", "Manage the Powerslides System.", new[]
                 {
@@ -65,7 +77,7 @@ namespace MyResource.ScriptedPhysics
                     else
                     {
                         if (PowerslideAggression == 0) Util.Notify("~b~Powerslides~w~ is ~o~disabled~w~.");
-                        else Util.Notify("~b~Powerslides~w~ is ~g~enabled~w~ at " + PowerslideAggression *100 + "%");
+                        else Util.Notify("~b~Powerslides~w~ is ~g~enabled~w~ at " + PowerslideAggression * 100 + "%");
                     }
                 }), false);
             }
@@ -77,19 +89,24 @@ namespace MyResource.ScriptedPhysics
         public Task OnTick()
         {
             if (Game.Player == null) return Task.FromResult(0);
-                        
+
+            pVehicle = null;
             if (Game.PlayerPed.SeatIndex == VehicleSeat.Driver) pVehicle = Game.PlayerPed.CurrentVehicle;
 
             if (pVehicle != null)
             {
+                //ProcessKERS(pVehicle);
                 if (InnapropiateToManage.Contains(pVehicle.ClassType)) return Task.FromResult(0);
 
-                float finalMult = (GetTorqueMultFromSlide(pVehicle)) * GetTractionControlMult(pVehicle) * ProcessOffroadBoost(pVehicle);                
-                if (finalMult != 1.000f)
+                float finalMult = GetPowerslide(pVehicle) * GetOffroadLimitCounteractor(pVehicle) * GetMultFromTurbo(pVehicle); //Boosters
+                finalMult *= GetOverspeedPenalty(pVehicle) * GetSuspensionCompressionPenalty(pVehicle) * GetTractionControl(pVehicle); //Depowerers
+
+                if (finalMult != 1.00f)
                 {
                     pVehicle.EngineTorqueMultiplier = Util.Clamp(finalMult, 0.01f, 100f);
                 }
             }
+            
             return Task.FromResult(0);
         }
 
@@ -318,9 +335,9 @@ namespace MyResource.ScriptedPhysics
 };
         float ExtraPowerOffroad = 1f;
         DateTime LastTorqueUpdate = DateTime.MinValue;
-        private float ProcessOffroadBoost(Vehicle veh)
+        private float GetOffroadLimitCounteractor(Vehicle veh)
         {
-            if ((int)API.GetConvarInt("sp_enable_offroad_boost", 1) == 0) { return 1; }
+            if ((int)API.GetConvarInt(sp_enable_offroad_boost, 1) == 0) { return 1; }
 
             if (veh != null)
             {
@@ -331,19 +348,30 @@ namespace MyResource.ScriptedPhysics
                 }
 
                 int m = API.GetVehicleWheelSurfaceMaterial(veh.Handle, 0);
-                if (materials[m] == null) { return 1; }
+                if (!materials.TryGetValue(m, out var nothing)) { return 1; }
 
                 float CurrentPower = 0;
                 if (veh.HighGear < 7 && gearRatios.ContainsKey(veh.HighGear))
                 {
+                    /*
                     float[] ratios = gearRatios[veh.HighGear];
                     if (veh.CurrentGear > 0)
                     {
                         CurrentPower = (float)Math.Round(API.GetVehicleAcceleration(veh.Handle) * ratios[veh.CurrentGear - 1], 3);
                     }
+                    */
+
+
+                    int nWheels = API.GetVehicleNumberOfWheels(pVehicle.Handle);
+                    for (int i = 0; i < nWheels; i++)
+                    {
+                        float p = API.GetVehicleWheelPower(pVehicle.Handle, i);
+                        CurrentPower += p;
+                    }
                 }
 
-                float TopSpeed = (API.GetVehicleEstimatedMaxSpeed(veh.Handle));
+                float TopSpeed = Util.MPHtoMS(API.GetVehicleHandlingFloat(veh.Handle, "CHandlingData", "fInitialDriveMaxFlatVel") / 0.75f * 0.6213712f);
+                float TopSpeed_ = (API.GetVehicleEstimatedMaxSpeed(veh.Handle));
                 float VehicleVelocity = (veh.Velocity.Length());
 
                 if (VehicleVelocity > 1 && veh.CurrentGear > 0)
@@ -364,15 +392,16 @@ namespace MyResource.ScriptedPhysics
                             TotalDrag = tireDrag * API.GetVehicleNumberOfWheels(veh.Handle);
                         }
 
-                        float DragMinusPower = TotalDrag - CurrentPower;
+                        float DragMinusPower = (TotalDrag - CurrentPower);
 
-                        float ExtraSpeedPastSeventyPercent = (VehicleVelocity - (TopSpeed * 0.7f)) * 0.05f;
+                        float ExtraSpeedPastSeventyPercent = (VehicleVelocity - (TopSpeed * 0.5f)) * 0.1f;
                         ExtraSpeedPastSeventyPercent *= 1 + API.GetVehicleHandlingFloat(veh.Handle, "CHandlingData", "fTractionLossMult");
 
+                        
 
                         ExtraPowerOffroad = 1f;
-                        if (DragMinusPower > 0.00f) ExtraPowerOffroad += DragMinusPower;
-                        if (ExtraSpeedPastSeventyPercent > 0f) ExtraPowerOffroad += (ExtraSpeedPastSeventyPercent);
+                        if (DragMinusPower > 0.00f) ExtraPowerOffroad += DragMinusPower*0.9f;
+                        if (ExtraSpeedPastSeventyPercent > 0f) ExtraPowerOffroad += (ExtraSpeedPastSeventyPercent);                        
 
                         if (ExtraPowerOffroad > 1.001f)
                         {
@@ -384,95 +413,253 @@ namespace MyResource.ScriptedPhysics
             return 1;
         }
 
+        private float GetOverspeedPenalty(Vehicle v)
+        {
+            if ((int)API.GetConvarInt(sp_overspeed_penalty, 1) == 0) { return 1; }
 
+            
+            float TopSpeed = (API.GetVehicleEstimatedMaxSpeed(v.Handle))/0.75f;
+
+            float overSpeed =  API.GetEntitySpeedVector(v.Handle, true).Y -TopSpeed;
+
+            return Util.Map(Util.MStoMPH(overSpeed), 5, 0, 0.05f, 1, true);
+            
+        }
+        private float GetMultFromTurbo(Vehicle v)
+        {
+            float mult = 1;
+            if ((int)API.GetConvarInt(sp_custom_turbo_power, 1) == 0) { return 1; }
+
+
+            if (API.IsToggleModOn(v.Handle, (int)VehicleToggleModType.Turbo))
+            {
+                float minimumPressure = 0.5f;
+
+                float power = 0;
+                int nWheels = API.GetVehicleNumberOfWheels(pVehicle.Handle);
+                for (int i = 0; i < nWheels; i++)
+                {
+                    float p = API.GetVehicleWheelPower(pVehicle.Handle, i);
+                    power += p;
+                }
+
+                bool IsSupercharger = false;
+
+                /*
+                if (API.GetHashKey("tulip") == v.Model.Hash)
+                {
+                    if (API.GetVehicleMod(v.Handle, (int)VehicleModType.Hood) >= 5)
+                    {
+                        IsSupercharger = true;
+                    }
+                }
+                */
+                float Pressure = API.GetVehicleTurboPressure(v.Handle);
+
+                if (IsSupercharger)
+                {
+                    
+                    //As soon as there's throttle, increase pressure quick
+                    if (Game.GetControlNormal(0, Control.VehicleAccelerate) >0.2f&& power!=0)
+                    {
+                       Pressure += Game.LastFrameTime * Game.GetControlNormal(0, Control.VehicleAccelerate);
+                    }
+                    else if (!API.GetVehicleHandbrake(v.Handle))
+                    {
+                        Pressure -= Game.LastFrameTime;
+                    }
+
+                    if (Pressure < minimumPressure)
+                    {
+                        Pressure = minimumPressure; //Can't go below pressure
+                    }
+
+                    Pressure = Util.Clamp(Pressure, 0, 1);
+                    API.SetVehicleTurboPressure(v.Handle, Pressure);
+                    mult = Util.Map(Pressure, minimumPressure, 1f, 1, 1.5f, true);
+                }
+                else
+                {
+                    if (Game.GetControlNormal(0, Control.VehicleAccelerate) < 0.2f || (power==0 && !API.GetVehicleHandbrake(v.Handle)))
+                    {
+                        if(Pressure>minimumPressure) Pressure -= Game.LastFrameTime*2;
+                        else Pressure -= Game.LastFrameTime;
+
+                    };
+
+                    if (Pressure < 0)
+                    {
+                        Pressure = 0; //Can't go below pressure
+                    }
+
+                    Pressure = Util.Clamp(Pressure, 0, 1);
+                    API.SetVehicleTurboPressure(v.Handle, Pressure);
+                    mult = Util.Map(Pressure, minimumPressure, 1f, 1, 2f, true);
+                }
+
+
+            }
+
+            return mult;
+        }
         float slideAngle = 1;
         /// <summary>
         /// Calculates the intended torque multiplier.
         /// </summary>
         /// <param name="v"></param>
-        private float GetTorqueMultFromSlide(Vehicle v)
+        private float GetPowerslide(Vehicle v)
         {
 
-            if ((int)API.GetConvarInt("powerslides_on", 1) == 0) { return 1; }
+            if ((int)API.GetConvarInt(powerslides_on, 1) == 0) { return 1; }
 
             if (v == null) return 1;
             if (v.CurrentGear <= 0) return 1;
 
-            float trlatStart = (float)(API.GetConvarInt("powerslides_trlat_start", 20)) / 100;
+            float trlatStart = (float)(API.GetConvarInt(powerslides_trlat_start, 20)) / 100;
             float trlat = API.GetVehicleHandlingFloat(v.Handle, "CHandlingData", "fTractionCurveLateral");
             if (trlat <= 0) trlat = 22; //Vanilla default, kinda
 
             slideAngle = (float)Math.Round(Math.Abs(Util.AngleBetween(Util.Normalized(v.Velocity), v.ForwardVector)), 1);
             float treshold = trlat * trlatStart;
 
-            float scale = (float)(API.GetConvarInt("powerslides_scale", 100)) *0.001f;
+            float scale = (float)(API.GetConvarInt(powerslides_scale, 100)) * 0.001f;
 
             if (PowerslideAggression > 0f && v.Model.IsCar && Math.Abs(slideAngle) > treshold)
-            {                               
-                float MaxMultiplier = (float)(API.GetConvarInt("powerslides_max_mult", 800) / 100);
+            {
+                float MaxMultiplier = (float)(API.GetConvarInt(powerslides_max_mult, 800) / 100);
 
                 float final = (float)Math.Round(1 + ((Math.Abs(slideAngle) - treshold) * scale), 1) * PowerslideAggression;
-                final = Util.Clamp(final, 1, MaxMultiplier); 
+                final = Util.Clamp(final, 1, MaxMultiplier);
 
                 if (v.CurrentGear == 1 && final > 2) final = 2;
-               return final;
+                return final;
             }
             return 1;
         }
-        bool TC = false;
 
-        float GetTractionControlMult(Vehicle v)
+        bool TC = true;
+        float GetTractionControl(Vehicle v)
         {
-            if (!TC) return 1;
+            if ((int)API.GetConvarInt(powerslides_tc_on, 0) == 0) { return 1; }
+            //if (Game.IsControlJustPressed(0, Control.VehicleHandbrake)) TC =! TC;
 
             if (API.GetVehicleHandlingFloat(v.Handle, "CHandlingData", "fDriveBiasFront") == 0f)
             {
                 float pwr = 0;
                 int poweredWheels = 0;
+                float totalWheelSpin = 0;
                 int nWheels = API.GetVehicleNumberOfWheels(v.Handle);
                 for (int i = 0; i < nWheels; i++)
                 {
                     float p = API.GetVehicleWheelPower(v.Handle, i);
+                    totalWheelSpin = API.GetVehicleWheelTractionVectorLength(v.Handle, i);
                     if (p > 0f) poweredWheels++;
                     pwr += p;
                 }
 
-                foreach (string r in boneToIndex.Keys)
+                for (int i = 0; i < nWheels; i++)
                 {
-                    int BoneIndex = API.GetEntityBoneIndexByName(v.Handle, r);
-                    if (BoneIndex != -1)
+                    float steer = API.GetVehicleWheelSteeringAngle(v.Handle, i);
+                    if (steer == 0.00f)
                     {
-                        float steer = API.GetVehicleWheelSteeringAngle(v.Handle, boneToIndex[r]);
-                        if (steer == 0.00f && TC)
-                        {
-                            if (Math.Abs(slideAngle) > 20f)
-                            {
-                                float mintraction = API.GetVehicleHandlingFloat(v.Handle, "CHandlingData", "fTractionCurveMin") / 4;
+                        
 
-                                float targetPower = Util.Map(Math.Abs(slideAngle), 60f, 20f, mintraction, pwr, true);
-                                if (targetPower < pwr)
-                                {
-                                    return targetPower / pwr;
-                                }
-                            }
+                        float mintraction = API.GetVehicleHandlingFloat(v.Handle, "CHandlingData", "fTractionCurveMin") / poweredWheels;
+                        float maxtraction = API.GetVehicleHandlingFloat(v.Handle, "CHandlingData", "fTractionCurveMax") / poweredWheels;
+                        
+                        
+                        float targetPower = maxtraction;
+                        float TRLat = API.GetVehicleHandlingFloat(v.Handle, "CHandlingData", "fTractionCurveLateral") * 0.25f;
+                        if (Math.Abs(slideAngle)>TRLat)
+                        {
+                            float target = Util.Map(Math.Abs(slideAngle), TRLat, TRLat * 2, pwr, maxtraction, true);
+
+                            targetPower = Util.Map(Math.Abs(slideAngle), 90f, TRLat*2, mintraction / 2, target, true);
                         }
-                        //SkidVectorLength += (float)Math.Round(API.GetVehicleWheelTractionVectorLength(v.Handle, boneToIndex[r]), 2) * 0.5f;
+                                                
+                        if (targetPower < pwr)
+                        {
+                            float Mult = TC == true ? targetPower / pwr : 1;
+                            //Util.Subtitle((Mult).ToString("0.0"), 100);
+                            return Mult;
+                        }
                     }
                 }
+
                 //if(TC) Util.DisplayHelpTextTimed("~y~Power: " + Math.Round(pwr * Mults[0], 1).ToString(), 10);
-                // else Util.DisplayHelpTextTimed("~g~Power: " + Math.Round(pwr * Mults[0], 1).ToString(), 10);
+                 //else Util.DisplayHelpTextTimed("~g~Power: " + Math.Round(pwr * Mults[0], 1).ToString(), 10);
 
             }
             return 1;
         }
 
+
+        List<float> wheelCompDelta = new List<float>();
+        List<float> wheelPower = new List<float>();
+        private int gTime = 0;
+        float currentAntiBoostMult = 1;
+        float GetSuspensionCompressionPenalty(Vehicle pVehicle)
+        {
+            if ((int)API.GetConvarInt(sp_reduce_suspension_boosts, 0) == 0) { return 1; }
+
+            if (pVehicle == null) return 1;
+
+
+            if (Game.GameTime > gTime)
+            {
+                gTime = Game.GameTime + 30;
+
+                if (currentAntiBoostMult < 1) currentAntiBoostMult += Game.LastFrameTime*2;
+                if (currentAntiBoostMult > 1) currentAntiBoostMult=1;
+
+                int nWheels = API.GetVehicleNumberOfWheels(pVehicle.Handle);
+                while (wheelCompDelta.Count < nWheels) wheelCompDelta.Add(0);
+
+                wheelPower.Clear();
+
+                for (int i = 0; i < nWheels; i++)
+                {
+                    wheelCompDelta[i] = GetVehicleWheelSuspensionCompression(pVehicle.Handle, i) - wheelCompDelta[i];
+                    wheelPower.Add(API.GetVehicleWheelPower(pVehicle.Handle, i));
+                }
+
+                float powerDel = wheelPower.Sum();
+
+                float totalDelta = 0;
+                totalDelta = wheelCompDelta.Sum();
+
+                if (totalDelta > 0.05f && Math.Abs(slideAngle)<10 )
+                {
+
+                    totalDelta = (float)Math.Round(Math.Abs(totalDelta * (1 + (API.GetVehicleAcceleration(pVehicle.Handle) * 10))), 5); //* (int)(Game.FPS/10)
+
+                    if (pVehicle.CurrentGear > 1 && powerDel > 0.001f)
+                    {
+                        float penalty = Util.Clamp(1 - totalDelta, 0.01f, 1);
+                        if (penalty < currentAntiBoostMult) currentAntiBoostMult = penalty;
+                    }
+                }
+
+                //Util.DisplayHelpTextTimed("Penalty x" + Math.Round(currentAntiBoostMult,2) + "", 500);
+
+
+                for (int i = 0; i < wheelCompDelta.Count; i++)
+                {
+                    wheelCompDelta[i] = (GetVehicleWheelSuspensionCompression(pVehicle.Handle, i));
+                }
+
+            }
+
+
+            return currentAntiBoostMult;
+        }
 
         float RampUp = 0f;
         float KERSFill = 0;
         float KERSMax = 1;
         private void ProcessKERS(Vehicle v)
         {
-
+            return;
             SetAllowAbilityBarInMultiplayer(true);
             SetAbilityBarVisibilityInMultiplayer(true);
             SetAbilityBarValue(KERSFill, KERSMax);
@@ -493,7 +680,7 @@ namespace MyResource.ScriptedPhysics
                 KERSFill += totalPressure;
             }
 
-            if (KERSFill > 0.001f && Game.IsControlPressed(2, Control.Sprint))
+            if (KERSFill > 0.001f && Game.IsControlPressed(2, Control.VehicleRocketBoost))
             {
                 RampUp += 2.5f * Game.LastFrameTime;
                 if (RampUp > 1) RampUp = 1;

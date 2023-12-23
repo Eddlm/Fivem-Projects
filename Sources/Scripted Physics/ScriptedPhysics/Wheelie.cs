@@ -16,7 +16,11 @@ namespace MyResource.ScriptedPhysics
     internal class Wheelie : BaseScript
     {
         private WheelieState WState = WheelieState.None;
-
+        public string cw_enable_custom_wheelies = "cw_enable_custom_wheelies";
+        public string cw_disable_vanilla = "cw_disable_vanilla";
+        public string cw_only_muscle = "cw_only_muscle";
+        public string cw_power_max = "cw_power_max";
+        public string cw_power_scale = "cw_power_scale";
         public Wheelie()
         {
         }
@@ -33,8 +37,8 @@ namespace MyResource.ScriptedPhysics
                 Vehicle v = Game.PlayerPed.CurrentVehicle;
                 if (InnapropiateToManage.Contains(v.ClassType) == false)
                 {
-                    if (API.GetConvarInt("cw_disable_vanilla", 1) == 1) DisableVanillaWheelie(v);
-                    if (API.GetConvarInt("cw_enable_custom_wheelies", 1) == 1) HandleWheelie(v);
+                    if (API.GetConvarInt(cw_disable_vanilla, 1) == 1) DisableVanillaWheelie(v);
+                    if (API.GetConvarInt(cw_enable_custom_wheelies, 1) == 1) HandleWheelie(v);
                 }
             }
 
@@ -43,7 +47,7 @@ namespace MyResource.ScriptedPhysics
 
         private void DisableVanillaWheelie(Vehicle v)
         {
-            if (API.GetVehicleWheelieState(v.Handle) == 129) API.SetVehicleWheelieState(v.Handle, 1);
+            if (API.GetVehicleWheelieState(v.Handle) == 129 || API.GetVehicleWheelieState(v.Handle)==65) API.SetVehicleWheelieState(v.Handle, 1);
         }
 
         /// <summary>
@@ -58,7 +62,7 @@ namespace MyResource.ScriptedPhysics
                 case WheelieState.None:
                     {
                         //Only Muscles check
-                        if (API.GetConvarInt("cw_only_muscle", 1) == 1 && vehicle.ClassType != VehicleClass.Muscle) break;
+                        if (API.GetConvarInt(cw_only_muscle, 1) == 1 && vehicle.ClassType != VehicleClass.Muscle) break;
 
                         //Stopped, accelerating and on handbrake
                         if (vehicle.Velocity.Length() < 1f
@@ -100,12 +104,12 @@ namespace MyResource.ScriptedPhysics
                         spdVector.Normalize();
 
                         float biasFront = API.GetVehicleHandlingFloat(vehicle.Handle, "CHandlingData", "fDriveBiasFront");
-                        float Accel = (API.GetVehicleAcceleration(vehicle.Handle) * 10) * ((float)API.GetConvarInt("cw_power_scale ", 200) / 100);
+                        float Accel = (API.GetVehicleAcceleration(vehicle.Handle) * 10) * ((float)API.GetConvarInt(cw_power_scale, 200) / 100);
 
                         float RWDBias = Accel * (Game.GetControlNormal(0, Control.VehicleAccelerate) * (1f - biasFront));
                         float finalForce = (float)Math.Round(RWDBias * Game.GetControlNormal(0, Control.VehicleMoveDown), 3);
 
-                        float Max= API.GetConvarInt("cw_power_max", 400) / 100;
+                        float Max= API.GetConvarInt(cw_power_max, 400) / 100;
                         if (finalForce > Max) finalForce = Max;
 
                         //Decay when off angle
@@ -117,14 +121,17 @@ namespace MyResource.ScriptedPhysics
 
                         finalForce *= spdMult;
                         finalForce *= spdVectorPenalty;
-
-                        finalForce *= 0.01f;
-                        API.ApplyForceToEntity(vehicle.Handle, 3, 0.0f, 0.0f, finalForce, 0f, 4f, 0.0f, 0, true, true, true, false, false);
                         
+                        finalForce *= 0.0025f;
 
+
+                        //API.ApplyForceToEntity(vehicle.Handle, 3, 0.0f, 0f, -finalForce, 0f, -10f, 0f, 0, true, true, true, false, false);
+                        API.ApplyForceToEntity(vehicle.Handle, 3, 0.0f, 0f, finalForce*2, 0f, 10f, 0f, 0, true, true, true, false, false);
+                        
+                        
                         //Twist
-                        //API.ApplyForceToEntity(vehicle.Handle, 3, torque, 0.0f, 0.0f, 0f, 0f, 2f, 0, true, true, true, false, false);
-                        //API.ApplyForceToEntity(vehicle.Handle, 3, -torque, 0.0f, 0.0f, 0f, 0f, -2f, 0, true, true, true, false, false);
+                        //API.ApplyForceToEntity(vehicle.Handle, 3,  Game.LastFrameTime*0.2f, 0.0f, 0.0f, 0f, 0f, 2f, 0, true, true, true, false, false);
+                        //API.ApplyForceToEntity(vehicle.Handle, 3, -Game.LastFrameTime*0.2f, 0.0f, 0.0f, 0f, 0f, -2f, 0, true, true, true, false, false);
 
                         //Side Stabilizer
                         //API.ApplyForceToEntity(vehicle.Handle, 3, spdVector.X * -0.01f, 0.0f, 0.0f, 0f, -10f, 0f, 0, true, true, true, true, true);
